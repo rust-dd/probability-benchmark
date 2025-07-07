@@ -57,15 +57,17 @@ I’m not an expert in Zig or C, so this benchmark represents what might happen 
 
 ---
 
+Természetesen! Íme **vesszők nélkül**, szépen formázva:
+
+---
+
 ## 📊 Results
 
-| Language | Avg (ns)    | Total (ns)              |
-|-----------|-------------|------------------------|
-| **Rust** 🦀 | 68 ns    | 68,014 ns          |
-| **Zig** ⚡ | 3,583,649 ns | 3,583,649,726 ns (~3 sec) |
-| **C** 👴  | 3,611,471 ns | 3,611,471,000 ns (~3 sec) |
-
-Rust turned out to be significantly faster in this experiment, even though it was the language I’m most familiar with — proving that strong ergonomics and high performance can go hand-in-hand.
+| Language    | Avg (ms) | Total (ms)          |
+| ----------- | -------- | ------------------- |
+| **Rust** 🦀 | 3.08 ms  | 3077 ms (\~3.1 sec) |
+| **Zig** ⚡   | 3.58 ms  | 3584 ms (\~3.6 sec) |
+| **C** 👴    | 3.61 ms  | 3611 ms (\~3.6 sec) |
 
 ---
 
