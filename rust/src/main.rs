@@ -34,7 +34,6 @@ fn main() {
     let mut total_ns: u128 = 0;
 
     for i in 0..NUM_RUNS {
-        println!("Run {}", i + 1);
         total_ns += run_once();
     }
 
