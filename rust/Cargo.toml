@@ -1,0 +1,13 @@
+[package]
+name = "rust"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+rand = { version = "0.9.1", features = ["small_rng"] }
+rand_distr = "0.5.1"
+
+[profile.release]
+debug = false
+codegen-units = 1
+lto = true
