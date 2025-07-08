@@ -3,16 +3,13 @@ const zprob = @import("zprob");
 
 const num_runs = 1000;
 
-fn run_once(allocator: *std.mem.Allocator) !u64 {
+fn run_once() !u64 {
     const n = 500_000;
     const t = 1.0;
     const dt = t / @as(f64, n);
 
-    var gn = try allocator.alloc(f64, n - 1);
-    defer allocator.free(gn);
-
-    var ou = try allocator.alloc(f64, n);
-    defer allocator.free(ou);
+    var gn = std.mem.zeroes([n - 1]f64);
+    var ou = std.mem.zeroes([n]f64);
 
     const theta = 1.0;
     const mu = 1.0;
@@ -35,17 +32,16 @@ fn run_once(allocator: *std.mem.Allocator) !u64 {
         ou[i] = ou[i - 1] + theta * (mu - ou[i - 1]) * dt + sigma * gn[i - 1];
     }
 
+    std.mem.doNotOptimizeAway(ou);
+
     return timer.read();
 }
 
 pub fn main() !void {
-    var gpa = std.heap.GeneralPurposeAllocator(.{}){};
-    var allocator = gpa.allocator();
-
     var total_ns: u64 = 0;
 
     for (0..num_runs) |_| {
-        const elapsed_ns = try run_once(&allocator);
+        const elapsed_ns = try run_once();
         total_ns += elapsed_ns;
     }
 
